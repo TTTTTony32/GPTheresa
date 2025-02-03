@@ -1,0 +1,5 @@
+fastapi
+gunicorn
+uvicorn
+gradio-client
+pydantic

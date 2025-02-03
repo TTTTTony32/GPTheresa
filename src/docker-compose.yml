@@ -1,0 +1,19 @@
+version: '3'
+services:
+    openai-to-sov-middleapi:
+        build: ./MiddleAPI/
+        ports:
+            - "5000:5000"
+        depends_on:
+            - ollama-cpu
+            - openweb-ui
+    ollama-cpu:
+        image: "ollama:latest"
+        ports:
+            - "11434:11434"
+    openweb-ui:
+        image: ""
+        ports:
+            - "8080:8080"
+        environment:
+
