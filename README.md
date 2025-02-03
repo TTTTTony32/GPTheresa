@@ -1,11 +1,11 @@
+![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/src/banner.jpg)
+<div align="center">
+
 # GPTheresa
 **GPT-Theresa是基于LLM(大语言模型)与[GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)的开源交互助理。**
 
-
-
-
 想要了解更多，欢迎观看[视频](links_for_bilibili)介绍
-
+</div>
 
 ## 特点
 
