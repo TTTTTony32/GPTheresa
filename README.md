@@ -12,7 +12,7 @@
 
 - **实现关联**: 
   - 本项目通过MiddleAPI.py实现GPT-SoVITS API接口与OpenWebUI API 接口的兼容。
-  - 通过PRTS.py为LLM获取[PRTS wiki](https://prts.wiki)内容符合用户提供世界观。
+  - 通过PRTS.py为LLM获取[PRTS wiki](https://prts.wiki)内容符合提供的世界观。
 - **可调性强**:
   - 支持本地[Ollama](https://github.com/ollama/ollama)模型部署。
   - 支持[OpenAI API](https://openai.com/api/)接口的模型；支持GPT-SoVITS推理模型的参数传递。
