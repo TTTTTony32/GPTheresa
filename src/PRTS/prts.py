@@ -4,9 +4,9 @@ author: Tony32
 author_url: 
 git_url: 
 description: This tools allow model access prts.wiki, which is a wiki for Arknights.
-required_open_webui_version: 0.1.0
+required_open_webui_version: 0.1.5
 requirements: requests
-version: 0.1.0
+version: 0.1.5
 licence: MIT
 """
 
@@ -29,52 +29,15 @@ class EventEmitter:
                     },
                 }
             )
-
-class Tools:
+class HelperFunction:
     def __init__(self):
         pass
-
-    async def get_info(self,name: str, __event_emitter__: Callable[[dict], Any] = None) -> str:
-        """
-        从PRTS获取干员/人物/组织/国家/地区的档案或(及)概要内容
-        :param name: 干员/人物/组织/国家/地区名称
-        :return: 档案或(及)概要内容
-        """
-        profile_enter = self.get_profile_enter(name)
-        profile_noenter = self.get_profile_noenter(name)
-        organization_info = self.get_organization_info(name)
-        place_info = self.get_place_info(name)
-        content = []
-        if profile_enter:
-            content.append(profile_enter)
-        if profile_noenter:
-            content.append(profile_noenter)
-        if organization_info:
-            content.append(organization_info)
-        if place_info:
-            content.append(place_info)
-        if content:
-            return "\n".join(content) + "\n[作为语言模型你应该记住的]返回给用户时，保持人物设定，先总结内容，再根据自己的总结返回给用户\n[作为扮演的角色你应该记住的]你是从PRTS中获得的信息，返回给博士时遵守博士的指令"
-        else:
-            return "未找到该干员/人物档案(概要)"
     
-    async def get_profile_enter(self,name: str, __event_emitter__: Callable[[dict], Any] = None) -> str:
-        emitter = EventEmitter(__event_emitter__)
-        await emitter.emit(f"正在搜索PRTS数据库...")
-        await emitter.emit(
-            status="in_progress",
-            description=f"正在搜索PRTS数据库...",
-            done=True
-        )
+    def get_profile_enter(self,name: str, __event_emitter__: Callable[[dict], Any] = None) -> str:
         url = f"https://prts.wiki/api.php?action=parse&page={name}&prop=wikitext&format=json"
         try:
             response = requests.get(url)
         except:
-            await emitter.emit(
-            status="error",
-            description=f"无法连接到PRTS",
-            done=True
-            )
             return None
         data = response.json()
         if 'error' in data:
@@ -88,11 +51,6 @@ class Tools:
             try:
                 response = requests.get(url)
             except:
-                await emitter.emit(
-                status="error",
-                description=f"无法连接到PRTS",
-                done=True
-                )
                 return None
             data = response.json()
             wikitext_content = data['parse']['wikitext']['*']
@@ -110,11 +68,6 @@ class Tools:
             end_index = len(wikitext_content)
         section_content = wikitext_content[start_index:end_index]
         section_content = section_content.replace('{', '').replace('}', '').replace('|', '').replace('[[', '').replace(']]', '')
-        await emitter.emit(
-            status="complete",
-            description=f"完成PRTS数据库搜索",
-            done=True
-        )
         return f"该干员档案内容：\n{section_content}"
     
     def get_profile_noenter(self,name: str) -> str:
@@ -259,3 +212,44 @@ class Tools:
         section_content = wikitext_content[start_index:end_index]
         section_content = section_content.replace('{', '').replace('}', '').replace('|', '').replace('[[', '').replace(']]', '')
         return f"该地区概要内容：\n{section_content}"
+    
+class Tools:
+    def __init__(self):
+        pass
+
+    async def get_info(self,name: str, __event_emitter__: Callable[[dict], Any] = None) -> str:
+        """
+        从PRTS获取干员/人物/组织/国家/地区的档案或(及)概要内容
+        :param name: 干员/人物/组织/国家/地区名称
+        :return: 档案或(及)概要内容
+        """
+        emitter = EventEmitter(__event_emitter__)
+        await emitter.emit(f"正在搜索PRTS数据库...")
+        await emitter.emit(
+            status="in_progress",
+            description=f"正在搜索PRTS数据库...",
+            done=True
+        )
+        helper = HelperFunction()
+        profile_enter = helper.get_profile_enter(name)
+        profile_noenter = helper.get_profile_noenter(name)
+        organization_info = helper.get_organization_info(name)
+        place_info = helper.get_place_info(name)
+        content = []
+        await emitter.emit(
+            status="complete",
+            description=f"完成PRTS数据库搜索",
+            done=True
+        )
+        if profile_enter:
+            content.append(profile_enter)
+        if profile_noenter:
+            content.append(profile_noenter)
+        if organization_info:
+            content.append(organization_info)
+        if place_info:
+            content.append(place_info)
+        if content:
+            return "\n".join(content) + "\n[作为语言模型你应该记住的]返回给用户时，保持人物设定，先总结内容，再根据自己的总结返回给用户\n[作为扮演的角色你应该记住的]你是从PRTS中获得的信息，返回给博士时遵守博士的指令"
+        else:
+            return "未找到该干员/人物档案(概要)"
