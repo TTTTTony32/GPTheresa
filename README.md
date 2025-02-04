@@ -27,6 +27,12 @@
 - **特蕾西娅**：基础模型`Qwen-2.5`，包含系统提示词、GPT-SoVITS模型、PRTS接入能力。
 
 ## 部署
+
+本项目的示意图如下:
+
+![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/src/main_structure.jpg)
+<div align="center">
+  
 ### 通过Docker部署
 ### 手动部署
 #### Windows用户
