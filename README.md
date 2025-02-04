@@ -67,7 +67,7 @@
        ```
        下载完成后，出现如下视为成功：
        ```user
-       Send a message (/? for help)
+       >>>Send a message (/? for help)
        ```
        查看任务栏中Ollama是否已经启动，如果Ollama已启动,则无需输入任何命令，如果Ollama未启动，则在终端输入:
        ```bash
