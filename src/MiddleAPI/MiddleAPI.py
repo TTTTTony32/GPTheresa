@@ -21,6 +21,14 @@ app = FastAPI()
 
 @app.get("/",response_class=HTMLResponse)
 async def root(html = "index.html"):
+    """
+    
+    Args:
+        html: Page name.
+
+    Returns: HTMLResponse
+
+    """
     if html == "index.html":
         with open('www/index.html', 'r', encoding='utf-8') as f:
             html = f.read()
