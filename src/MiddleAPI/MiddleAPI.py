@@ -11,15 +11,19 @@
 # Copyright 2025 Ashley Lee (nekokecore@emtips.net)
 
 from fastapi import FastAPI, Response
+from fastapi.responses import HTMLResponse
+
 from utils.gradioUtils import posttosovits
 from utils.pydanticUtils import OpenWebUI, SetConfig, GetConfig
 from utils.configUtils import setconfig, getconfig
 
 app = FastAPI()
 
-@app.get("/")
+@app.get("/",response_class=HTMLResponse)
 async def root():
-    return {"message": "MiddleAPI"}
+    with open('www/index.html','r',encoding='utf-8') as f:
+        html = f.read()
+    return html
 
 @app.post("/audio/speech")
 async def tts(openjson: OpenWebUI):
