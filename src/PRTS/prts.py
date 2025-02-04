@@ -1,12 +1,9 @@
 """
 title: PRTS
 author: Tony32
-author_url: 
-git_url: 
 description: This tools allow model access prts.wiki, which is a wiki for Arknights.
-required_open_webui_version: 0.1.5
 requirements: requests
-version: 0.1.5
+version: 0.2.0
 licence: MIT
 """
 
@@ -103,7 +100,7 @@ class HelperFunction:
             return None
         data = response.json()
         if 'error' in data:
-            return self.get_organization_info_2(name)
+            return None
         wikitext_content = data['parse']['wikitext']['*']
         if '#redirect' in wikitext_content:
             start = wikitext_content.find("[[") + 2
@@ -162,7 +159,7 @@ class HelperFunction:
             return None
         data = response.json()
         if 'error' in data:
-            return self.get_place_info_2(name)
+            return None
         wikitext_content = data['parse']['wikitext']['*']
         if '#redirect' in wikitext_content:
             start = wikitext_content.find("[[") + 2
@@ -217,39 +214,95 @@ class Tools:
     def __init__(self):
         pass
 
-    async def get_info(self,name: str, __event_emitter__: Callable[[dict], Any] = None) -> str:
+    async def get_character_profile(self,name: str, __event_emitter__: Callable[[dict], Any] = None) -> str:
         """
-        从PRTS获取干员/人物/组织/国家/地区的档案或(及)概要内容
-        :param name: 干员/人物/组织/国家/地区名称
-        :return: 档案或(及)概要内容
+        搜索PRTS，获取干员的档案或(及)概要内容，在搜索不到时，尝试搜索国家/地区/组织的概要内容
+        :param name: 干员名称
+        :return: 干员档案或(及)概要内容
         """
         emitter = EventEmitter(__event_emitter__)
-        await emitter.emit(f"正在搜索PRTS数据库...")
+        await emitter.emit(f"正在链接到PRTS干员数据库...")
         await emitter.emit(
             status="in_progress",
-            description=f"正在搜索PRTS数据库...",
+            description=f"正在搜索PRTS干员数据库...",
             done=True
         )
         helper = HelperFunction()
         profile_enter = helper.get_profile_enter(name)
         profile_noenter = helper.get_profile_noenter(name)
-        organization_info = helper.get_organization_info(name)
-        place_info = helper.get_place_info(name)
         content = []
         await emitter.emit(
             status="complete",
-            description=f"完成PRTS数据库搜索",
+            description=f"完成PRTS干员数据库搜索",
             done=True
         )
         if profile_enter:
             content.append(profile_enter)
         if profile_noenter:
             content.append(profile_noenter)
-        if organization_info:
-            content.append(organization_info)
-        if place_info:
-            content.append(place_info)
         if content:
             return "\n".join(content) + "\n[作为语言模型你应该记住的]返回给用户时，保持人物设定，先总结内容，再根据自己的总结返回给用户\n[作为扮演的角色你应该记住的]你是从PRTS中获得的信息，返回给博士时遵守博士的指令"
         else:
-            return "未找到该干员/人物档案(概要)"
+            return "未找到该干员/人物档案(概要)，该名称可能是国家/地区/组织名"
+        
+    async def get_organization_profile(self,name: str, __event_emitter__: Callable[[dict], Any] = None) -> str:
+        """
+        搜索PRTS，获取组织的概要内容，在搜索不到时，尝试搜索国家/地区/干员的概要内容
+        :param name: 组织名称
+        :return: 组织概要内容
+        """
+        emitter = EventEmitter(__event_emitter__)
+        await emitter.emit(f"正在链接到泰拉组织数据库...")
+        await emitter.emit(
+            status="in_progress",
+            description=f"正在搜索泰拉组织数据库...",
+            done=True
+        )
+        helper = HelperFunction()
+        organization_info = helper.get_organization_info(name)
+        organization_info2 = helper.get_organization_info_2(name)
+        content = []
+        await emitter.emit(
+            status="complete",
+            description=f"完成泰拉组织数据库搜索",
+            done=True
+        )
+        if organization_info:
+            content.append(organization_info)
+        if organization_info2:
+            content.append(organization_info2)
+        if content:
+            return "\n".join(content) + "\n[作为语言模型你应该记住的]返回给用户时，保持人物设定，先总结内容，再根据自己的总结返回给用户\n[作为扮演的角色你应该记住的]你是从PRTS中获得的信息，返回给博士时遵守博士的指令"
+        else:
+            return "未找到该组织概要，该名称可能是国家/地区/干员名"
+        
+    async def get_place_profile(self,name: str, __event_emitter__: Callable[[dict], Any] = None) -> str:
+        """
+        搜索PRTS，获取国家/地区概要内容，在搜索不到时，尝试搜索组织/干员的概要内容
+        :param name: 国家/地区名称
+        :return: 国家/地区概要内容
+        """
+        emitter = EventEmitter(__event_emitter__)
+        await emitter.emit(f"正在链接到泰拉地理数据库...")
+        await emitter.emit(
+            status="in_progress",
+            description=f"正在搜索泰拉地理数据库...",
+            done=True
+        )
+        helper = HelperFunction()
+        place_info = helper.get_place_info(name)
+        place_info2 = helper.get_place_info_2(name)
+        content = []
+        await emitter.emit(
+            status="complete",
+            description=f"完成泰拉地理数据库搜索",
+            done=True
+        )
+        if place_info:
+            content.append(place_info)
+        if place_info2:
+            content.append(place_info2)
+        if content:
+            return "\n".join(content) + "\n[作为语言模型你应该记住的]返回给用户时，保持人物设定，先总结内容，再根据自己的总结返回给用户\n[作为扮演的角色你应该记住的]你是从PRTS中获得的信息，返回给博士时遵守博士的指令"
+        else:
+            return "未找到该国家/地区概要，该名称可能是组织/干员名"
