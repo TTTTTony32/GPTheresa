@@ -55,8 +55,12 @@
        
        > ⚠️注意
        > 
-       > 请选择支持`Function Calling`特性的模型，否则可能会出现无法搜索PRTS的情况
-       
+       > 请选择支持`Function Calling`特性的模型，否则可能会出现**无法搜索PRTS**的情况
+       > 
+       > 作为参考，可以查阅[此处](https://docs.siliconflow.cn/guides/function-calling#3)获得支持Function Calling的开源模型列表
+       > 
+       > `DeepSeek-R1`暂不支持Function Calling特性，请有需求的用户使用`DeepSeek-V3`或`Qwen-2.5-7B-Instruct`模型
+
        以deepseek-r1:7b为例：
        ```bash
        ollama run deepseek-r1:7b
@@ -102,7 +106,7 @@
 
     > ⚠️注意
     >
-    > 请记住小特.pth与小特.ckpt的路径
+    > 请记住`小特.pth`与`小特.ckpt`的路径
 
 5. **下载PRTS工具包和MiddleAPI**
 
