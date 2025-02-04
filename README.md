@@ -81,11 +81,11 @@
 
     下载解压压缩包。 
 
-    进入目录双击 `go-webui.bat`
+    下载我们src目录下的 [start_inference.bat](https://github.com/TTTTTony32/GPTheresa/blob/main/src/start_inference.bat)
 
-    启动后，GPT-SoVITS服务默认监听本地端口`9874`
+    将'start_inference.bat'放入GPT-SoVITS根目录
 
-    打开网页端，选择`1-GPT-SoVITS-TTS`下的`1C-推理`，下拉找到`启动TTS推理WebUI`并点击
+    双击打开。
 
     此时GPT-SoVITS推理服务默认监听本地端口`9872`
 
