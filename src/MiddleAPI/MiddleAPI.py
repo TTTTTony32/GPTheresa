@@ -20,9 +20,13 @@ from utils.configUtils import setconfig, getconfig
 app = FastAPI()
 
 @app.get("/",response_class=HTMLResponse)
-async def root():
-    with open('www/index.html','r',encoding='utf-8') as f:
-        html = f.read()
+async def root(html = "index.html"):
+    if html == "index.html":
+        with open('www/index.html', 'r', encoding='utf-8') as f:
+            html = f.read()
+    if html == "settings.html":
+        with open('www/settings.html', 'r', encoding='utf-8') as f:
+            html = f.read()
     return html
 
 @app.post("/audio/speech")
