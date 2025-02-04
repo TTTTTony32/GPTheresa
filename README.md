@@ -33,6 +33,11 @@
 ![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/src/main_structure.png)
   
 ### 通过Docker部署
+  打开终端输入：
+  ```bash
+  docker compose up -d
+  ```
+  完成部署。请在docker中访问OpenWebUI端口使用。
 ### 手动部署
 #### Windows用户
 1. **安装OpenWebUI**
