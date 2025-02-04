@@ -31,7 +31,6 @@
 本项目的示意图如下:
 
 ![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/src/main_structure.png)
-<div align="center">
   
 ### 通过Docker部署
 ### 手动部署
