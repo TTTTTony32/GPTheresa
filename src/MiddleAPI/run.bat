@@ -1,2 +1,4 @@
 @echo off
-docker run -d -p 8000:8000 sovits-to-openai-middle-fastapi-app
+python -m venv venv
+venv\Scripts\activate.bat
+uvicorn MiddleAPI:app --host 0.0.0.0 --port 8000
