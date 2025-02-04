@@ -15,4 +15,7 @@ class SetConfig(BaseModel):
     section:str
     key:str
     value:str
-    
+
+class GetConfig(BaseModel):
+    section:str
+    key:str

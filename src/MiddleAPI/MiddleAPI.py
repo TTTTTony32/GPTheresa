@@ -12,7 +12,7 @@
 
 from fastapi import FastAPI, Response
 from utils.gradioUtils import posttosovits
-from utils.pydanticUtils import OpenWebUI, SetConfig
+from utils.pydanticUtils import OpenWebUI, SetConfig, GetConfig
 from utils.configUtils import setconfig, getconfig
 
 app = FastAPI()
@@ -37,6 +37,28 @@ async def tts(openjson: OpenWebUI):
 
 @app.post("/app/setconfig")
 async def sc(sc: SetConfig):
+    """
+    
+    Args:
+        sc: Request body.
+
+    Returns: Json response.
+
+    """
     setconfig(sc.section, sc.key, sc.value)
     return {"msg":"OK","code":0}
 
+@app.get("/app/getconfig")
+async def gc(gc: GetConfig):
+    """
+    
+    Args:
+        gc: Request body.
+
+    Returns: Json response.
+
+    """
+    config = getconfig(gc.section,gc.key)
+    if config is None:
+        return {"msg":"FAILED","code":1}
+    return {"msg":"OK","code":0,"section":gc.section,"key":gc.key,"value":config}
