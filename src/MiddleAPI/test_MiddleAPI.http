@@ -5,7 +5,14 @@ Accept: application/json
 
 ###
 
-GET http://127.0.0.1:8000/hello/User
+POST http://127.0.0.1:8000/app/getconfig
+Content-Type: application/json
 Accept: application/json
+
+{
+    "section":"sovits",
+    "key":"top_k"
+}
+
 
 ###

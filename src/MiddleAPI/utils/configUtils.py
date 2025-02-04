@@ -5,9 +5,9 @@
 # @IDE : PyCharm
 # @Author : Ashley Lee (nekokecore@emtips.net)
 # @Date : 2025/2/4 13:45
-import configparser
 
 # Copyright 2025 Ashley Lee (nekokecore@emtips.net)
+import configparser
 
 def getconfig(section,key):
     """
@@ -20,7 +20,8 @@ def getconfig(section,key):
 
     """
     cf = configparser.ConfigParser()
-    cf.read('config/config.ini')
+    cf.read('config/config.ini',encoding='utf-8')
+    return cf.get(section,key)
     value = cf.get(section,key)
     return value
 
@@ -36,7 +37,7 @@ def setconfig(section,key,value):
 
     """
     cf = configparser.ConfigParser()
-    cf.read('config/config.ini')
+    cf.read('config/config.ini',encoding='utf-8')
     cf.set(section,key,value)
     with open('config/config.ini', 'w', encoding='utf-8') as configfile:
         cf.write(configfile)

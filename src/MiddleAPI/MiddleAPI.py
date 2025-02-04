@@ -48,7 +48,7 @@ async def sc(sc: SetConfig):
     setconfig(sc.section, sc.key, sc.value)
     return {"msg":"OK","code":0}
 
-@app.get("/app/getconfig")
+@app.post("/app/getconfig")
 async def gc(gc: GetConfig):
     """
     

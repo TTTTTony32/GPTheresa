@@ -3,8 +3,10 @@
 # @Project : 2025-MiddleAPI
 # @File : pydanticUtils.py
 # @IDE : PyCharm
-# @Author : Ashley
+# @Author : Ashley Lee (nekokecore@emtips.net)
 # @Date : 2025/2/4 14:05
+
+# Copyright 2025 Ashley Lee (nekokecore@emtips.net)
 from pydantic import BaseModel
 
 class OpenWebUI(BaseModel):

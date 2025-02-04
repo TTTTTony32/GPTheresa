@@ -7,8 +7,8 @@ MiddleAPI旨在不更改OpenWeb UI源代码的前提下，以一个中间人的�
 |  方法  |                 API                  |    功能     |
 |:----:|:------------------------------------:|:---------:|
 | GET  |        http://localhost:8000         |  Web UI   |
-| GET  | http://localhost:8000/app/getconfig  | TTS推理参数读取 |
 | POST |  http://localhost:8000/audio/speech  |   TTS推理   |
+| POST | http://localhost:8000/app/getconfig  | TTS推理参数读取 |
 | POST | http://localhost:8000/app/setconfig  | TTS推理参数设置 |
 
 ## API文档
@@ -25,19 +25,6 @@ MiddleAPI旨在不更改OpenWeb UI源代码的前提下，以一个中间人的�
 |:--:|:-:|
 | 无  | 无 |
 
-### TTS推理参数读取
-
-#### 路径
-| 方法  |                 API                 |   功能   | 请求体  |
-|:---:|:-----------------------------------:|:------:|:----:|
-| GET | http://localhost:8000/app/getconfig | TTS推理参数读取 | JSON |
-
-#### 请求体
-|   参数    |   值   |
-|:-------:|:-----:|
-| section | 配置节点名 |
-|   key   |  配置名  |
-
 ### TTS推理
 
 #### 路径
@@ -50,6 +37,19 @@ MiddleAPI旨在不更改OpenWeb UI源代码的前提下，以一个中间人的�
 |:-----:|:----:|
 | input | 输入文本 |
 | voice | 目标语言 |
+
+### TTS推理参数读取
+
+#### 路径
+|  方法  |                 API                 |   功能   | 请求体  |
+|:----:|:-----------------------------------:|:------:|:----:|
+| POST | http://localhost:8000/app/getconfig | TTS推理参数读取 | JSON |
+
+#### 请求体
+|   参数    |   值   |
+|:-------:|:-----:|
+| section | 配置节点名 |
+|   key   |  配置名  |
 
 ### TTS推理参数设置
 
