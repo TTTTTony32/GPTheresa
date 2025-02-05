@@ -205,6 +205,6 @@
 - 音色模型提供者 [Dear棉花糖](https://space.bilibili.com/7044180)
 
 ## 协议
-- BSDV3[]
+- [BSD-V3](https://github.com/TTTTTony32/GPTheresa/blob/main/LICENSE)
 ## 支持
 ## 赞助
