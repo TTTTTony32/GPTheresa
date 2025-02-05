@@ -65,9 +65,9 @@ The schematic diagram of this project is as follows:
 2. **Prepare the LLM Model**
     1. **If you plan to deploy the model locally:**
 
-       Install[Ollama](https://ollama.com/download).
+       Install [Ollama](https://ollama.com/download).
        
-       Deploy the local model: Find a suitable model in the [Ollama Library](https://ollama.com/library)and pull it in the terminal.
+       Deploy the local model: Find a suitable model in the [Ollama Library](https://ollama.com/library) and pull it in the terminal.
        
        > ⚠️Note
        > 
