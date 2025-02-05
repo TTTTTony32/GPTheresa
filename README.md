@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/src/pics/en/banner_en.png)
+![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/en/banner_en.png)
 <div align="center">
 
 # GPTheresa
@@ -30,7 +30,7 @@
 
 本项目的示意图如下:
 
-![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/src/pics/en/main_structure_en.png)
+![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/en/main_structure_en.pn)
   
 ### 通过Docker部署
   由于本项目集成了`OpenWebUI`、`GPT-SoVITS`两个大型开源项目，手动部署步骤相当繁琐，且部署后需要启动数个终端，不利于长久使用，因此我们强烈建议用户使用Docker部署我们的项目。
