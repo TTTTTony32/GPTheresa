@@ -1,4 +1,4 @@
-![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/en/banner_en.png)
+![](pics/en/banner_en.png)
 <div align="center">
 
 # GPTheresa
