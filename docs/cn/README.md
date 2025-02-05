@@ -1,9 +1,12 @@
-![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/src/banner.jpg)
+![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/cn/banner_cn.jpg)
 <div align="center">
 
 # GPTheresa
 **GPT-Theresa是基于LLM(大语言模型)与[GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)的开源交互助理。**
 
+[**English**](../../README.md) | **中文简体**
+
+---
 想要了解更多，欢迎观看[视频](links_for_bilibili)介绍
 </div>
 
@@ -30,7 +33,7 @@
 
 本项目的示意图如下:
 
-![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/src/main_structure.png)
+![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/cn/main_structure_cn.png)
   
 ### 通过Docker部署
   由于本项目集成了`OpenWebUI`、`GPT-SoVITS`两个大型开源项目，手动部署步骤相当繁琐，且部署后需要启动数个终端，不利于长久使用，因此我们强烈建议用户使用Docker部署我们的项目。
