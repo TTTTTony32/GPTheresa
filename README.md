@@ -33,11 +33,25 @@
 ![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/src/main_structure.png)
   
 ### 通过Docker部署
-  打开终端输入：
+  由于本项目集成了`OpenWebUI`、`GPT-SoVITS`两个大型开源项目，手动部署步骤相当繁琐，且部署后需要启动数个终端，不利于长久使用，因此我们强烈建议用户使用Docker部署我们的项目。
+  
+  > ⚠️注意
+  > 
+  > 开始前，请确认您的设备已经安装Docker
+  > 
+  > Windows用户请安装WSL2和Docker Desktop
+  > 
+  > 可以参考[此处(英文页面)](https://docs.docker.com/desktop/setup/install/windows-install/)进行安装
+  
+  克隆本项目或直接下载压缩包
+  ```bash
+  git clone https://github.com/TTTTTony32/GPTheresa.git
+  ```
+  进入`src`目录，输入以下命令使用Docker Compose部署
   ```bash
   docker compose up -d
   ```
-  完成部署。请在docker中访问OpenWebUI端口使用。
+  完成后，直接连接到Docker容器开放的端口进入OpenWebUI即可使用（默认为`8080`）。
 ### 手动部署
 #### Windows用户
 1. **安装OpenWebUI**
@@ -111,12 +125,12 @@
 5. **下载PRTS工具包和MiddleAPI**
 
     克隆本项目或直接下载压缩包
-    ```
+    ```bash
     git clone https://github.com/TTTTTony32/GPTheresa.git
     ```
     进入`src`文件夹，将`MiddleAPI`文件夹与`prts.json`文件复制到GPT-SoVITS路径下
 
-    进入`MiddleAPI`路径，在终端输入
+    进入`MiddleAPI`目录，在终端输入
     ```bash
     pip install requirements.txt -r
     ```
