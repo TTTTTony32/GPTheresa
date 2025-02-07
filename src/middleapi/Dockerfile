@@ -11,4 +11,4 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # 运行 FastAPI 应用，使用 Uvicorn 作为服务器
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "MiddleAPI:app", "--host", "0.0.0.0", "--port", "8000"]
