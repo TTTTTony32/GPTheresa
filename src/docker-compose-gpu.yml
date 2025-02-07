@@ -1,4 +1,5 @@
 version: '3'
+name: gptheresa
 services:
     openweb-ui:
         image: ghcr.io/open-webui/open-webui:main
@@ -9,21 +10,6 @@ services:
             - openweb-ui-data:/app/backend/data
         copy:
             - openweb-ui/webui.db:/app/backend/data/webui.db
-        deploy:
-            resources:
-                reservations:
-                    devices:
-                        - driver: nvidia
-                          count: "all"
-                          capabilities: [gpu]
-        restart: unless-stopped
-    ollama:
-        image: ollama/ollama:latest
-        container_name: ollama
-        ports:
-            - "11434:11434"
-        volumes:
-            - ollama-data:/root/.ollama
         deploy:
             resources:
                 reservations:
@@ -82,8 +68,6 @@ services:
             - gpt-sovits
         restart: unless-stopped
 volumes:
-    ollama-data:
-        driver: local
     openweb-ui-data:
         driver: local
     gpt-sovits-data:

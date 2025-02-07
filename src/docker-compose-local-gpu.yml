@@ -10,10 +10,32 @@ services:
             - openweb-ui-data:/app/backend/data
         copy:
             - openweb-ui/webui.db:/app/backend/data/webui.db
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: nvidia
+                          count: "all"
+                          capabilities: [gpu]
         restart: unless-stopped
-    gpt-sovits-cpu:
+    ollama:
+        image: ollama/ollama:latest
+        container_name: ollama
+        ports:
+            - "11434:11434"
+        volumes:
+            - ollama-data:/root/.ollama
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: nvidia
+                          count: "all"
+                          capabilities: [gpu]
+        restart: unless-stopped
+    gpt-sovits:
         image: breakstring/gpt-sovits:latest
-        container_name: gpt-sovits-cpu
+        container_name: gpt-sovits
         environment:
             - is_half=False
             - is_share=False
@@ -22,12 +44,12 @@ services:
             - cnhubert_path=GPT_SoVITS/pretrained_models/chinese-hubert-base
             - bert_path=GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large
         volumes:
-            - gpt-sovits-cpu-data/output:/workspace/output
-            - gpt-sovits-cpu-data/logs:/workspace/logs
-            - gpt-sovits-cpu-data/SoVITS_weights:/workspace/SoVITS_weights
-            - gpt-sovits-cpu-data/reference:/workspace/reference
-            - gpt-sovits-cpu-data/GPT_weights:/workspace/GPT_weights
-            - gpt-sovits-cpu-data/wavs:/workspace/wavs
+            - gpt-sovits-data/output:/workspace/output
+            - gpt-sovits-data/logs:/workspace/logs
+            - gpt-sovits-data/SoVITS_weights:/workspace/SoVITS_weights
+            - gpt-sovits-data/reference:/workspace/reference
+            - gpt-sovits-data/GPT_weights:/workspace/GPT_weights
+            - gpt-sovits-data/wavs:/workspace/wavs
         copy:
             - gpt-sovits/SoVITS_weights/xiaote.pth:/workspace/SoVITS_weights/xiaote.pth
             - gpt-sovits/GPT_weights/xiaote.ckpt:/workspace/GPT_weights/xiaote.ckpt
@@ -37,25 +59,34 @@ services:
         ports:
             - "9872:9872"
         shm_size: 16G
+        deploy:
+            resources:
+                reservations:
+                    devices:
+                        - driver: nvidia
+                          count: "all"
+                          capabilities: [gpu]
         stdin_open: true
         tty: true
         command: ["python", "GPT_SoVITS/inference_webui.py", "zh"]
         restart: unless-stopped
     middleapi:
         build: 
-            context: ./middleapi
+            context: ./middleapi/
             dockerfile: Dockerfile
         container_name: middleapi
         ports:
             - "5000:5000"
         depends_on:
-            - ollama-cpu
+            - ollama
             - openweb-ui
-            - gpt-sovits-cpu
+            - gpt-sovits
         restart: unless-stopped
 volumes:
+    ollama-data:
+        driver: local
     openweb-ui-data:
         driver: local
-    gpt-sovits-cpu-data:
+    gpt-sovits-data:
         driver: local
 
