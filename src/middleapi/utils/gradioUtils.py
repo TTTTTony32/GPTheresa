@@ -12,6 +12,10 @@
 
 from gradio_client import Client, file
 from utils.textUtils import cleantext
+import os
+
+def isdocker():
+    return os.path.exists('/.dockerenv')
 
 def posttosovits(voice, input):
     """
@@ -23,7 +27,11 @@ def posttosovits(voice, input):
     Returns: audio files.
 
     """
-    client = Client("http://localhost:9872/")
+    if isdocker():
+        client = Client("http://host.docker.internal:9872/")
+    else:
+        client = Client("http://localhost:9872/")
+
     result = client.predict(
         ref_wav_path=file('wavs/xiaote.wav'),
         prompt_text="我还记得这间会议室。这是专门为特蕾西娅空着的位置吗？不......我并不需要。",
@@ -40,4 +48,5 @@ def posttosovits(voice, input):
         inp_refs=[],
         api_name="/get_tts_wav"
     )
+
     return result
