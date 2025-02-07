@@ -52,10 +52,10 @@ services:
         environment:
             - is_half=False
             - is_share=False
-            - gpt_path=GPT_weights/xiaote.ckpt
-            - sovits_path=SoVITS_weights/xiaote.pth
-            - cnhubert_path=GPT_SoVITS/pretrained_models/chinese-hubert-base
-            - bert_path=GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large
+            - gpt_path=/workspace/GPT_weights/xiaote.ckpt
+            - sovits_path=/workspace/SoVITS_weights/xiaote.pth
+            - cnhubert_path=/workspace/GPT_SoVITS/pretrained_models/chinese-hubert-base
+            - bert_path=/workspace/GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large
         volumes:
             - gpt-sovits-data-output:/workspace/output
             - gpt-sovits-data-logs:/workspace/logs
