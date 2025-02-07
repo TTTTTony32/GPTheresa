@@ -1,11 +1,12 @@
-version: '3'
 name: gptheresa
 services:
     init-data:
         image: busybox
         volumes:
             - openweb-ui-data:/openweb-ui-data
-            - gpt-sovits-cpu-data:/gpt-sovits-cpu-data
+            - gpt-sovits-cpu-data-sovits-weights:/SoVITS_weights
+            - gpt-sovits-cpu-data-gpt-weights:/GPT_weights
+            - gpt-sovits-cpu-data-wavs:/wavs
             - ./openweb-ui:/openweb-ui-temp-data
             - ./gpt-sovits:/gpt-sovits-temp-data
             - ./entrypoint.sh:/entrypoint.sh
@@ -33,12 +34,12 @@ services:
             - cnhubert_path=GPT_SoVITS/pretrained_models/chinese-hubert-base
             - bert_path=GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large
         volumes:
-            - gpt-sovits-cpu-data/output:/workspace/output
-            - gpt-sovits-cpu-data/logs:/workspace/logs
-            - gpt-sovits-cpu-data/SoVITS_weights:/workspace/SoVITS_weights
-            - gpt-sovits-cpu-data/reference:/workspace/reference
-            - gpt-sovits-cpu-data/GPT_weights:/workspace/GPT_weights
-            - gpt-sovits-cpu-data/wavs:/workspace/wavs
+            - gpt-sovits-cpu-data-output:/workspace/output
+            - gpt-sovits-cpu-data-logs:/workspace/logs
+            - gpt-sovits-cpu-data-sovits-weights:/workspace/SoVITS_weights
+            - gpt-sovits-cpu-data-reference:/workspace/reference
+            - gpt-sovits-cpu-data-gpt-weights:/workspace/GPT_weights
+            - gpt-sovits-cpu-data-wavs:/workspace/wavs
         working_dir: /workspace
         ports:
             - "9872:9872"
@@ -61,6 +62,16 @@ services:
 volumes:
     openweb-ui-data:
         driver: local
-    gpt-sovits-cpu-data:
+    gpt-sovits-cpu-data-output:
+        driver: local
+    gpt-sovits-cpu-data-logs:
+        driver: local
+    gpt-sovits-cpu-data-sovits-weights:
+        driver: local
+    gpt-sovits-cpu-data-reference:
+        driver: local
+    gpt-sovits-cpu-data-gpt-weights:
+        driver: local
+    gpt-sovits-cpu-data-wavs:
         driver: local
 
