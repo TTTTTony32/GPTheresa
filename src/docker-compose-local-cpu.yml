@@ -1,15 +1,24 @@
 version: '3'
 name: gptheresa
 services:
+    init-data:
+        image: busybox
+        volumes:
+            - openweb-ui-data:/openweb-ui-data
+            - gpt-sovits-cpu-data:/gpt-sovits-cpu-data
+            - ./openweb-ui:/openweb-ui-temp-data
+            - ./gpt-sovits:/gpt-sovits-temp-data
+            - ./entrypoint.sh:/entrypoint.sh
+        entrypoint: ["/bin/sh", "/entrypoint.sh"]
     openweb-ui:
         image: ghcr.io/open-webui/open-webui:main
         container_name: openweb-ui
+        depends_on:
+            - init-data
         ports:
             - "8080:8080"
         volumes:
             - openweb-ui-data:/app/backend/data
-        copy:
-            - openweb-ui/webui.db:/app/backend/data/webui.db
         restart: unless-stopped
     ollama-cpu:
         image: ollama/ollama:latest
@@ -22,6 +31,8 @@ services:
     gpt-sovits-cpu:
         image: breakstring/gpt-sovits:latest
         container_name: gpt-sovits-cpu
+        depends_on:
+            - init-data
         environment:
             - is_half=False
             - is_share=False
@@ -36,11 +47,6 @@ services:
             - gpt-sovits-cpu-data/reference:/workspace/reference
             - gpt-sovits-cpu-data/GPT_weights:/workspace/GPT_weights
             - gpt-sovits-cpu-data/wavs:/workspace/wavs
-        copy:
-            - gpt-sovits/SoVITS_weights/xiaote.pth:/workspace/SoVITS_weights/xiaote.pth
-            - gpt-sovits/GPT_weights/xiaote.ckpt:/workspace/GPT_weights/xiaote.ckpt
-            - gpt-sovits/GPT_weights/xiaote.pth:/workspace/GPT_weights/xiaote.pth
-            - gpt-sovits/wavs/xiaote.wav:/workspace/wavs/xiaote.wav
         working_dir: /workspace
         ports:
             - "9872:9872"
