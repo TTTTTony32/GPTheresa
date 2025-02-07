@@ -17,6 +17,8 @@ services:
         container_name: openweb-ui
         depends_on:
             - init-data
+        environment:
+            - WEBUI_AUTH=False
         ports:
             - "8080:8080"
         volumes:
