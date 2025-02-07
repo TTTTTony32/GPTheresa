@@ -84,7 +84,7 @@ services:
             dockerfile: Dockerfile
         container_name: middleapi
         ports:
-            - "5000:5000"
+            - "8000:8000"
         depends_on:
             - ollama
             - openweb-ui
