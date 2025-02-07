@@ -1,4 +1,4 @@
-![](pics/en/banner_en.png)
+![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/en/banner_en.png)
 <div align="center">
 
 # GPTheresa
@@ -29,6 +29,36 @@ For more information, feel free to watch the [video](links_for_bilibili) introdu
 This project provides some pre-optimized models that are ready to use out of the box.
 - **Theresa**:The base model is `Qwen-2.5`, which includes system prompts, the GPT-SoVITS model, and the ability to access PRTS.
 
+## Performance Requirements
+The table below shows the performance of some open-source models supported by Ollama in this project.
+
+Test platform:
+
+NVIDIA RTX 4090 24G
+
+Intel Xeon Platinum 8352V
+
+120G RAM
+
+| Model                        | Full Prompt | PRTS | Realization Effect* |
+| :---------------------------: | :----------: | :----: | :--------: |
+| Qwen2.5:0.5B                | ✅          | ❌    | 15%      |
+| Qwen2.5:1.5B                | ✅          | ⛔    | 20%      |
+| **Qwen2.5:7B**                  | ✅          | ⛔    | **45%**      |
+| **Qwen2.4:14B**                 | ✅          | ✅    | **70%**      |
+| GLM4:9B                     | ✅          | ✅    | 40%      |
+| DeepSeek-R1:1.5B            | ✅          | ❌    | 20%      |
+| DeepSeek-R1:7B              | ✅          | ❌    | 20%      |
+| deepseek-r1-tool-calling:7B | ✅          | ✅    | 30%      |
+
+Based on the information in the table, we recommend that users deploy locally with models of at least `Qwen2.5:7B` or larger to achieve the best results.
+
+In terms of PC configuration, we recommend using at least an RTX 30 series graphics card with >8G of video memory; otherwise, you may not be able to deploy and use this project smoothly.
+
+***Note: The sample size for the realization effect is too small, so it does not have significant reference value.**
+
+**For users with limited PC performance, please use API to access large models and skip the GPT-SoVITS deployment.**
+
 ## Deployment
 
 The schematic diagram of this project is as follows:
@@ -49,9 +79,18 @@ The schematic diagram of this project is as follows:
   ```bash
   git clone https://github.com/TTTTTony32/GPTheresa.git
   ```
-  Enter the `src` directory and use the following command to deploy with Docker Compose:
+  Enter the `src` directory, select the appropriate deployment command from the table below based on your needs, and deploy using Docker Compose:
+
+  | Deployment Package Introduction                               |   Command |
+  | :--------------------------------: |  :------------------------------------------------: |
+  | Online model API + GPT-SoVITS CPU inference          | `docker compose -f .\docker-compose-cpu.yml up --build`  |      
+  | **Online model API + GPT-SoVITS GPU inference**          | `docker compose -f .\docker-compose-gpu.yml up --build`  |       
+  | Local model + GPT-SoVITS CPU inference          | `docker compose -f .\docker-compose-local-cpu.yml up --build` |         
+  | Local model + GPT-SoVITS GPU inference          | `docker compose -f .\docker-compose-local-gpu.yml up --build` |       
+
+If you choose to use the **Online model API + GPT-SoVITS GPU inference**, enter the following command in the terminal:
   ```bash
-  docker compose up -d
+  docker compose -f .\docker-compose-gpu.yml up --build
   ```
   After completion, you can connect to the port opened by the Docker container to enter OpenWebUI and start using it (default is `8080`).
 ### Manual Deployment
@@ -65,9 +104,9 @@ The schematic diagram of this project is as follows:
 2. **Prepare the LLM Model**
     1. **If you plan to deploy the model locally:**
 
-       Install [Ollama](https://ollama.com/download).
+       Install[Ollama](https://ollama.com/download).
        
-       Deploy the local model: Find a suitable model in the [Ollama Library](https://ollama.com/library) and pull it in the terminal.
+       Deploy the local model: Find a suitable model in the [Ollama Library](https://ollama.com/library)and pull it in the terminal.
        
        > ⚠️Note
        > 
@@ -209,4 +248,15 @@ The schematic diagram of this project is as follows:
 ## License
 - [BSD-V3](https://github.com/TTTTTony32/GPTheresa/blob/main/LICENSE)
 ## Support
+
+Feel free to join our qq group(146052965), or scan the QR code below:
+
+![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/qr/qr-qq.png)
+
 ## Sponsor
+
+We thank all of our supporters and if you would like to buy us a cup of coffee, you can scan the QR code below:
+
+![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/qr/qr-support.png)
+
+## The Project is created by **[Tony32](https://github.com/TTTTTony32)** **[NekokeCore](https://github.com/NekokeCore)** **[DeckDes](https://github.com/DeckDes233)**
