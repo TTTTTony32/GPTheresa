@@ -1,0 +1,70 @@
+version: '3'
+services:
+    openweb-ui:
+        image: ghcr.io/open-webui/open-webui:main
+        container_name: openweb-ui
+        ports:
+            - "8080:8080"
+        volumes:
+            - openweb-ui-data:/app/backend/data
+        copy:
+            - openweb-ui/webui.db:/app/backend/data/webui.db
+        restart: unless-stopped
+    ollama-cpu:
+        image: ollama/ollama:latest
+        container_name: ollama-cpu
+        ports:
+            - "11434:11434"
+        volumes:
+            - ollama-cpu-data:/root/.ollama
+        restart: unless-stopped
+    gpt-sovits-cpu:
+        image: breakstring/gpt-sovits:latest
+        container_name: gpt-sovits-cpu
+        environment:
+            - is_half=False
+            - is_share=False
+            - gpt_path=GPT_weights/xiaote.ckpt
+            - sovits_path=SoVITS_weights/xiaote.pth
+            - cnhubert_path=GPT_SoVITS/pretrained_models/chinese-hubert-base
+            - bert_path=GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large
+        volumes:
+            - gpt-sovits-cpu-data/output:/workspace/output
+            - gpt-sovits-cpu-data/logs:/workspace/logs
+            - gpt-sovits-cpu-data/SoVITS_weights:/workspace/SoVITS_weights
+            - gpt-sovits-cpu-data/reference:/workspace/reference
+            - gpt-sovits-cpu-data/GPT_weights:/workspace/GPT_weights
+            - gpt-sovits-cpu-data/wavs:/workspace/wavs
+        copy:
+            - gpt-sovits/SoVITS_weights/xiaote.pth:/workspace/SoVITS_weights/xiaote.pth
+            - gpt-sovits/GPT_weights/xiaote.ckpt:/workspace/GPT_weights/xiaote.ckpt
+            - gpt-sovits/GPT_weights/xiaote.pth:/workspace/GPT_weights/xiaote.pth
+            - gpt-sovits/wavs/xiaote.wav:/workspace/wavs/xiaote.wav
+        working_dir: /workspace
+        ports:
+            - "9872:9872"
+        shm_size: 16G
+        stdin_open: true
+        tty: true
+        command: ["python", "GPT_SoVITS/inference_webui.py", "zh"]
+        restart: unless-stopped
+    middleapi:
+        build: 
+            context: ./middleapi
+            dockerfile: Dockerfile
+        container_name: middleapi
+        ports:
+            - "5000:5000"
+        depends_on:
+            - ollama-cpu
+            - openweb-ui
+            - gpt-sovits-cpu
+        restart: unless-stopped
+volumes:
+    ollama-cpu-data:
+        driver: local
+    openweb-ui-data:
+        driver: local
+    gpt-sovits-cpu-data:
+        driver: local
+
