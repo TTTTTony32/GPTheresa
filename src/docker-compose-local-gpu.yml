@@ -1,28 +1,14 @@
 name: gptheresa
 services:
-    init-data:
-        image: busybox
-        volumes:
-            - openweb-ui-data:/openweb-ui-data
-            - gpt-sovits-data-sovits-weights:/SoVITS_weights
-            - gpt-sovits-data-gpt-weights:/GPT_weights
-            - gpt-sovits-data-wavs:/wavs
-            - ./openweb-ui:/openweb-ui-temp-data
-            - ./gpt-sovits:/gpt-sovits-temp-data
-            - ./entrypoint.sh:/entrypoint.sh
-        entrypoint: ["/bin/sh", "/entrypoint.sh"]
-        command: ["echo", "Data initialized."]
     openweb-ui:
         image: ghcr.io/open-webui/open-webui:main
         container_name: openweb-ui
-        depends_on:
-            - init-data
         environment:
             - WEBUI_AUTH=False
         ports:
             - "8080:8080"
         volumes:
-            - openweb-ui-data:/app/backend/data
+            - ./openweb-ui:/app/backend/data
         deploy:
             resources:
                 reservations:
@@ -49,22 +35,18 @@ services:
     gpt-sovits:
         image: breakstring/gpt-sovits:latest
         container_name: gpt-sovits
-        depends_on:
-            - init-data
         environment:
             - is_half=False
             - is_share=False
-            - gpt_path=/workspace/GPT_weights/xiaote.ckpt
-            - sovits_path=/workspace/SoVITS_weights/xiaote.pth
-            - cnhubert_path=/workspace/GPT_SoVITS/pretrained_models/chinese-hubert-base
-            - bert_path=/workspace/GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large
+            - gpt_path=/gpt-sovits-data/GPT_weights/xiaote.ckpt
+            - sovits_path=/gpt-sovits-data/SoVITS_weights/xiaote.pth
+            - cnhubert_path=GPT_SoVITS/pretrained_models/chinese-hubert-base
+            - bert_path=GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large
         volumes:
-            - gpt-sovits-data-output:/workspace/output
-            - gpt-sovits-data-logs:/workspace/logs
-            - gpt-sovits-data-sovits-weights:/workspace/SoVITS_weights
-            - gpt-sovits-data-reference:/workspace/reference
-            - gpt-sovits-data-gpt-weights:/workspace/GPT_weights
-            - gpt-sovits-data-wavs:/workspace/wavs
+            - ./gpt-sovits:/gpt-sovits-data
+            - gpt-sovits-cpu-data-output:/workspace/output
+            - gpt-sovits-cpu-data-logs:/workspace/logs
+            - gpt-sovits-cpu-data-reference:/workspace/reference
         working_dir: /workspace
         ports:
             - "9872:9872"
@@ -93,20 +75,7 @@ services:
             - gpt-sovits
         restart: unless-stopped
 volumes:
-    ollama-data:
-        driver: local
-    openweb-ui-data:
-        driver: local
-    gpt-sovits-data-output:
-        driver: local
-    gpt-sovits-data-logs:
-        driver: local
-    gpt-sovits-data-sovits-weights:
-        driver: local
-    gpt-sovits-data-reference: 
-        driver: local
-    gpt-sovits-data-gpt-weights:
-        driver: local
-    gpt-sovits-data-wavs:
-        driver: local
-
+    ollama-cpu-data: {}
+    gpt-sovits-cpu-data-output: {}
+    gpt-sovits-cpu-data-logs: {}
+    gpt-sovits-cpu-data-reference: {}
