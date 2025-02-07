@@ -11,6 +11,7 @@ services:
             - ./gpt-sovits:/gpt-sovits-temp-data
             - ./entrypoint.sh:/entrypoint.sh
         entrypoint: ["/bin/sh", "/entrypoint.sh"]
+        command: ["echo", "Data initialized."]
     openweb-ui:
         image: ghcr.io/open-webui/open-webui:main
         container_name: openweb-ui
