@@ -251,10 +251,10 @@ PC配置方面，我们建议至少使用RTX30系，显存>8G的显卡，否则�
 
 欢迎加入我们的QQ群（群号：146052965）或在下面扫码进群交流。
 
-[](https://github.com/TTTTTony32/GPTheresa/blob/main/pics/qr/qr-qq.png)
+![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/qr/qr-qq.png)
 
 ## 赞助
 我们感谢所有支持我们的人，如果您想给我们买杯咖啡，可以扫下方二维码：
-[](https://github.com/TTTTTony32/GPTheresa/blob/main/pics/qr/qr-support.png)
+![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/qr/qr-support.png)
 
 ### 项目由 **[Tony32](https://github.com/TTTTTony32)** **[NekokeCore](https://github.com/NekokeCore)** **[DeckDes](https://github.com/DeckDes233)** 合力完成。
