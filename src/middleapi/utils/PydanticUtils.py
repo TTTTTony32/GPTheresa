@@ -1,23 +1,24 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Project : 2025-MiddleAPI
-# @File : pydanticUtils.py
+# @File : PydanticUtils.py
 # @IDE : PyCharm
 # @Author : Ashley Lee (nekokecore@emtips.net)
 # @Date : 2025/2/4 14:05
 
 # Copyright 2025 Ashley Lee (nekokecore@emtips.net)
 from pydantic import BaseModel
+from typing import Union
 
-class OpenWebUI(BaseModel):
+class OpenWebUIObj(BaseModel):
     input:str
     voice:str
 
-class SetConfig(BaseModel):
+class SetConfigObj(BaseModel):
     section:str
     key:str
-    value:str
+    value:Union[str, int, float, bool]
 
-class GetConfig(BaseModel):
+class GetConfigObj(BaseModel):
     section:str
     key:str

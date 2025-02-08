@@ -1,0 +1,13 @@
+cutting:
+  radio_component: Slice once every 4 sentences
+global:
+  use_new_api: true
+gpt:
+  temperature: 1
+  top_k: 5
+  top_p: 1
+reference:
+  no_reference_mode: false
+  reference_audio: https://torappu.prts.wiki/assets/audio/voice_cn/char_4134_cetsyr/cn_001.wav?filename=%E4%BB%BB%E5%91%BD%E5%8A%A9%E7%90%86.wav
+  reference_audio_language: Chinese
+  reference_audio_text: 我还记得这间会议室。这是专门为特蕾西娅空着的位置吗？不......我并不需要。

@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # @Project : 2025-MiddleAPI
-# @File : textUtils.py
+# @File : TextUtils.py
 # @IDE : PyCharm
 # @Author : DeckDes (deckdes@outlook.com)
 # @Co-Author : Ashley Lee (nekokecore@emtips.net)
@@ -9,16 +9,14 @@
 
 # Copyright 2025 DeckDes (deckdes@outlook.com)
 # Copyright 2025 Ashley Lee (nekokecore@emtips.net)
-
 import re
 
-def cleantext(input_text):
-    """
-    
-    Args:
-        input_text: Original text.
+class CleanText:
+    @staticmethod
+    def text(input_text):
+        """
 
-    Returns: Deleted [***] text.
+        Returns: Deleted [***] text.
 
-    """
-    return re.sub(r"\[.*?]", "", input_text)
+        """
+        return re.sub(r"\[.*?]", "", input_text)

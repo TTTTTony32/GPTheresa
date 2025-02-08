@@ -1,18 +1,23 @@
 # Test your FastAPI endpoints
 
-GET http://127.0.0.1:8000/
-Accept: application/json
-
-###
-
 POST http://127.0.0.1:8000/app/getconfig
 Content-Type: application/json
 Accept: application/json
 
 {
-    "section":"sovits",
-    "key":"top_k"
+    "section":"reference",
+    "key":"reference_audio"
 }
 
+###
+POST http://127.0.0.1:8000/app/setconfig
+Content-Type: application/json
+Accept: application/json
+
+{
+    "section":"gpt",
+    "key":"top_k", 
+    "value": 5
+}
 
 ###

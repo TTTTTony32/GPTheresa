@@ -13,9 +13,9 @@
 from fastapi import FastAPI, Response
 from fastapi.responses import HTMLResponse
 
-from utils.gradioUtils import posttosovits
-from utils.pydanticUtils import OpenWebUI, SetConfig, GetConfig
-from utils.configUtils import setconfig, getconfig
+from utils.GradioUtils import GradioClient
+from utils.PydanticUtils import OpenWebUIObj, SetConfigObj, GetConfigObj
+from utils.ConfigUtils import ConfigTools
 
 app = FastAPI()
 
@@ -38,7 +38,7 @@ async def root(html = "index.html"):
     return html
 
 @app.post("/audio/speech")
-async def tts(openjson: OpenWebUI):
+async def tts(openjson: OpenWebUIObj):
     """
     
     Args:
@@ -47,12 +47,12 @@ async def tts(openjson: OpenWebUI):
     Returns: Audio file.
 
     """
-    with open(posttosovits(openjson.voice,openjson.input), "rb") as f:
+    with open(GradioClient.inference(openjson.voice,openjson.input), "rb") as f:
         file_bytes = f.read()
     return Response(content=file_bytes, media_type="audio/wav")
 
 @app.post("/app/setconfig")
-async def sc(sc: SetConfig):
+async def sc(sc: SetConfigObj):
     """
     
     Args:
@@ -61,11 +61,14 @@ async def sc(sc: SetConfig):
     Returns: Json response.
 
     """
-    setconfig(sc.section, sc.key, sc.value)
+    cm = ConfigTools("config/config.yaml")
+    config = cm.read_config()
+    config[sc.section][sc.key] = sc.value
+    cm.write_config(config)
     return {"msg":"OK","code":0}
 
 @app.post("/app/getconfig")
-async def gc(gc: GetConfig):
+async def gc(gc: GetConfigObj):
     """
     
     Args:
@@ -74,7 +77,8 @@ async def gc(gc: GetConfig):
     Returns: Json response.
 
     """
-    config = getconfig(gc.section,gc.key)
+    cm = ConfigTools("config/config.yaml")
+    config = cm.get_value(gc.section)[gc.key]
     if config is None:
         return {"msg":"FAILED","code":1}
     return {"msg":"OK","code":0,"section":gc.section,"key":gc.key,"value":config}
