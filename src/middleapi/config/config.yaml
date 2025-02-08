@@ -1,13 +1,13 @@
 cutting:
-  radio_component: Slice by Chinese punct
+  radio_component: Slice once every 4 sentences
 global:
   use_new_api: true
 gpt:
-  temperature: 1
-  top_k: 5
-  top_p: 1
+  temperature: 0.25
+  top_k: 1
+  top_p: 0
 reference:
   no_reference_mode: false
-  reference_audio: https://torappu.prts.wiki/assets/audio/voice/char_4134_cetsyr/cn_029.wav?filename=%E5%AE%8C%E6%88%90%E9%AB%98%E9%9A%BE%E8%A1%8C%E5%8A%A8.wav
-  reference_audio_language: Japanese
-  reference_audio_text: いつかきっと、私たちが炎を点し、朽ち果てる全てを燃やし尽くせる日はやってくるわ。
+  reference_audio: https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1739002890857/audio.wav
+  reference_audio_language: Chinese
+  reference_audio_text: 阿米娅看上去还是这么瘦弱，这个年纪的孩子，个子是不是应该更高一点才对？她到底有没有好好吃饭呢。

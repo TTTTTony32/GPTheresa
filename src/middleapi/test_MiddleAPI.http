@@ -17,7 +17,7 @@ Accept: application/json
 {
     "section":"gpt",
     "key":"top_k", 
-    "value": 5
+    "value": 1
 }
 
 ###
