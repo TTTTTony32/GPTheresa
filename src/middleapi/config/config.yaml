@@ -1,5 +1,5 @@
 cutting:
-  radio_component: Slice once every 4 sentences
+  radio_component: Slice by Chinese punct
 global:
   use_new_api: true
 gpt:
@@ -8,6 +8,6 @@ gpt:
   top_p: 1
 reference:
   no_reference_mode: false
-  reference_audio: https://torappu.prts.wiki/assets/audio/voice_cn/char_4134_cetsyr/cn_001.wav?filename=%E4%BB%BB%E5%91%BD%E5%8A%A9%E7%90%86.wav
-  reference_audio_language: Chinese
-  reference_audio_text: 我还记得这间会议室。这是专门为特蕾西娅空着的位置吗？不......我并不需要。
+  reference_audio: https://torappu.prts.wiki/assets/audio/voice/char_4134_cetsyr/cn_029.wav?filename=%E5%AE%8C%E6%88%90%E9%AB%98%E9%9A%BE%E8%A1%8C%E5%8A%A8.wav
+  reference_audio_language: Japanese
+  reference_audio_text: いつかきっと、私たちが炎を点し、朽ち果てる全てを燃やし尽くせる日はやってくるわ。
