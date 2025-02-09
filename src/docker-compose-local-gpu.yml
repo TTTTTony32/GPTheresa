@@ -44,9 +44,9 @@ services:
             - bert_path=GPT_SoVITS/pretrained_models/chinese-roberta-wwm-ext-large
         volumes:
             - ./gpt-sovits:/gpt-sovits-data
-            - gpt-sovits-cpu-data-output:/workspace/output
-            - gpt-sovits-cpu-data-logs:/workspace/logs
-            - gpt-sovits-cpu-data-reference:/workspace/reference
+            - gpt-sovits-data-output:/workspace/output
+            - gpt-sovits-data-logs:/workspace/logs
+            - gpt-sovits-data-reference:/workspace/reference
         working_dir: /workspace
         ports:
             - "9872:9872"
@@ -75,7 +75,7 @@ services:
             - gpt-sovits
         restart: unless-stopped
 volumes:
-    ollama-cpu-data: {}
-    gpt-sovits-cpu-data-output: {}
-    gpt-sovits-cpu-data-logs: {}
-    gpt-sovits-cpu-data-reference: {}
+    ollama-data: {}
+    gpt-sovits-data-output: {}
+    gpt-sovits-data-logs: {}
+    gpt-sovits-data-reference: {}
