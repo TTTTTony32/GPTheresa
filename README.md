@@ -90,9 +90,15 @@ The schematic diagram of this project is as follows:
 
 If you choose to use the **Online model API + GPT-SoVITS GPU inference**, enter the following command in the terminal:
   ```bash
+  git config core.autocrlf false
   docker compose -f .\docker-compose-gpu.yml up --build -d
   ```
   After completion, you can connect to the port opened by the Docker container to enter OpenWebUI and start using it (default is `8080`).
+
+  If you want to uninstall(take uninstalling **Online model API + GPT-SoVITS GPU inference** as an example):
+  ```bash
+  docker compose -f .\docker-compose-gpu.yml down
+  ```
 ### Manual Deployment
 #### Windows Users
 1. **Install OpenWebUI**
