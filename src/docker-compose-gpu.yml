@@ -13,6 +13,7 @@ services:
         container_name: openweb-ui
         environment:
             - WEBUI_AUTH=False
+            - DATABASE_URL=sqlite:///app/backend/data/webui-docker.db
         ports:
             - "8080:8080"
         volumes:
