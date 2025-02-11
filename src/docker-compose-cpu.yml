@@ -1,5 +1,13 @@
 name: gptheresa
 services:
+    init-data:
+        image: busybox
+        container_name: init-data
+        volumes:
+            - ./gpt-sovits:/gpt-sovits-data
+            - ./entrypoint.sh:/entrypoint.sh
+        entrypoint: ["/bin/sh", "/entrypoint.sh"]
+        command: ["sh", "-c", "echo 'Initialed sovits data.'"]
     openweb-ui:
         image: ghcr.io/open-webui/open-webui:main
         container_name: openweb-ui
@@ -13,6 +21,9 @@ services:
     gpt-sovits-cpu:
         image: breakstring/gpt-sovits:latest
         container_name: gpt-sovits-cpu
+        depends_on:
+            init-data:
+                condition: service_completed_successfully
         environment:
             - is_half=False
             - is_share=False
