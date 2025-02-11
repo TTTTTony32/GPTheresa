@@ -89,6 +89,13 @@ PC配置方面，我们建议至少使用RTX30系，显存>8G的显卡，否则�
 | 本地模型 + GPT-SoVITS GPU推理          | `docker compose -f .\docker-compose-local-gpu.yml up --build -d` |       
 
 如果使用**在线模型API + GPT-SoVITS GPU推理**，在终端输入：
+
+ > ⚠️注意
+ >
+ >如果您是在Linux上部署， **这条命令可不执行：`git config core.autocrlf false`** 
+ >
+ 如果是其他系统，请**一定**保证一下两条命令都需要执行。
+
   ```bash
   git config core.autocrlf false
   docker compose -f .\docker-compose-gpu.yml up --build -d
