@@ -90,9 +90,14 @@ PC配置方面，我们建议至少使用RTX30系，显存>8G的显卡，否则�
 
 如果使用**在线模型API + GPT-SoVITS GPU推理**，在终端输入：
   ```bash
+  git config core.autocrlf false
   docker compose -f .\docker-compose-gpu.yml up --build -d
   ```
   完成后，直接连接到Docker容器开放的端口进入OpenWebUI即可使用（默认为`8080`）。
+  一键卸载（以**在线模型API + GPT-SoVITS GPU推理**为例）:
+  ```bash
+  docker compose -f .\docker-compose-gpu.yml down
+  ```
 ### 手动部署
 #### Windows用户
 1. **安装OpenWebUI**
