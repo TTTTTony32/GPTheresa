@@ -83,14 +83,14 @@ The schematic diagram of this project is as follows:
 
   | Deployment Package Introduction                               |   Command |
   | :--------------------------------: |  :------------------------------------------------: |
-  | Online model API + GPT-SoVITS CPU inference          | `docker compose -f .\docker-compose-cpu.yml up --build`  |      
-  | **Online model API + GPT-SoVITS GPU inference**          | `docker compose -f .\docker-compose-gpu.yml up --build`  |       
-  | Local model + GPT-SoVITS CPU inference          | `docker compose -f .\docker-compose-local-cpu.yml up --build` |         
-  | Local model + GPT-SoVITS GPU inference          | `docker compose -f .\docker-compose-local-gpu.yml up --build` |       
+  | Online model API + GPT-SoVITS CPU inference          | `docker compose -f .\docker-compose-cpu.yml up --build -d`  |      
+  | **Online model API + GPT-SoVITS GPU inference**          | `docker compose -f .\docker-compose-gpu.yml up --build -d`  |       
+  | Local model + GPT-SoVITS CPU inference          | `docker compose -f .\docker-compose-local-cpu.yml up --build -d` |         
+  | Local model + GPT-SoVITS GPU inference          | `docker compose -f .\docker-compose-local-gpu.yml up --build -d` |       
 
 If you choose to use the **Online model API + GPT-SoVITS GPU inference**, enter the following command in the terminal:
   ```bash
-  docker compose -f .\docker-compose-gpu.yml up --build
+  docker compose -f .\docker-compose-gpu.yml up --build -d
   ```
   After completion, you can connect to the port opened by the Docker container to enter OpenWebUI and start using it (default is `8080`).
 ### Manual Deployment
