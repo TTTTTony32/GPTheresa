@@ -7,7 +7,7 @@ services:
             - ./gpt-sovits:/gpt-sovits
             - ./entrypoint.sh:/entrypoint.sh
         entrypoint: ["/bin/sh", "/entrypoint.sh"]
-        command: tail -f /dev/null
+        command: ["sh", "-c", "echo 'Initialed sovits data.'"]
     openweb-ui:
         image: ghcr.io/open-webui/open-webui:main
         container_name: openweb-ui
@@ -30,7 +30,8 @@ services:
         image: breakstring/gpt-sovits:latest
         container_name: gpt-sovits-cpu
         depends_on:
-            - init-data
+            init-data:
+                condition: service_completed_successfully
         environment:
             - is_half=False
             - is_share=False
