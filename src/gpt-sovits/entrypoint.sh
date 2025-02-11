@@ -1,3 +1,4 @@
 #!/bin/sh
-cat /gpt-sovits-data/gpt-sovits.tar.* | tar -zxvf - -C /gpt-sovits-data/
+cd /gpt-sovits-data
+cat gpt-sovits.tar.* | tar -zxvf -
 exec "$@"
