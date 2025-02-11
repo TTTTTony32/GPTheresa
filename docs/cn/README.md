@@ -83,14 +83,14 @@ PC配置方面，我们建议至少使用RTX30系，显存>8G的显卡，否则�
   进入`src`目录，根据需求在下表选择适合自己的部署命令，使用Docker Compose部署：
 | 部署包简介                               |  部署命令 |
 | :--------------------------------: |  :------------------------------------------------: |
-| 在线模型API + GPT-SoVITS CPU推理          | `docker compose -f .\docker-compose-cpu.yml up --build`  |      
-| **在线模型API + GPT-SoVITS GPU推理**          | `docker compose -f .\docker-compose-gpu.yml up --build`  |       
-| 本地模型 + GPT-SoVITS CPU推理          | `docker compose -f .\docker-compose-local-cpu.yml up --build` |         
-| 本地模型 + GPT-SoVITS GPU推理          | `docker compose -f .\docker-compose-local-gpu.yml up --build` |       
+| 在线模型API + GPT-SoVITS CPU推理          | `docker compose -f .\docker-compose-cpu.yml up --build -d`  |      
+| **在线模型API + GPT-SoVITS GPU推理**          | `docker compose -f .\docker-compose-gpu.yml up --build -d`  |       
+| 本地模型 + GPT-SoVITS CPU推理          | `docker compose -f .\docker-compose-local-cpu.yml up --build -d` |         
+| 本地模型 + GPT-SoVITS GPU推理          | `docker compose -f .\docker-compose-local-gpu.yml up --build -d` |       
 
 如果使用**在线模型API + GPT-SoVITS GPU推理**，在终端输入：
   ```bash
-  docker compose -f .\docker-compose-gpu.yml up --build
+  docker compose -f .\docker-compose-gpu.yml up --build -d
   ```
   完成后，直接连接到Docker容器开放的端口进入OpenWebUI即可使用（默认为`8080`）。
 ### 手动部署
