@@ -89,10 +89,18 @@ The schematic diagram of this project is as follows:
   | Local model + GPT-SoVITS GPU inference          | `docker compose -f .\docker-compose-local-gpu.yml up --build -d` |       
 
 If you choose to use the **Online model API + GPT-SoVITS GPU inference**, enter the following command in the terminal:
+
+ > ⚠️Note
+ >
+ >If you are deploying on Linux, **You can ignore the following command:`git config core.autocrlf false`**. 
+ >
+ >Otherwise, for other users, please **must** execute the commands below.
+
   ```bash
   git config core.autocrlf false
   docker compose -f .\docker-compose-gpu.yml up --build -d
   ```
+ 
   After completion, you can connect to the port opened by the Docker container to enter OpenWebUI and start using it (default is `8080`).
 
   If you want to uninstall(take uninstalling **Online model API + GPT-SoVITS GPU inference** as an example):
