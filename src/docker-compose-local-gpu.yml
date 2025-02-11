@@ -1,7 +1,7 @@
 name: gptheresa
 services:
     init-data:
-        image: busybox
+        image: alpine
         container_name: init-data
         volumes:
             - ./gpt-sovits:/gpt-sovits-data
