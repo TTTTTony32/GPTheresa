@@ -5,7 +5,7 @@ services:
         container_name: init-data
         volumes:
             - ./gpt-sovits:/gpt-sovits-data
-            - ./gpt-sovits/entrypoint.sh:/entrypoint.sh
+            - ./entrypoint.sh:/entrypoint.sh
         entrypoint: ["/bin/sh", "/entrypoint.sh"]
         command: ["sh", "-c", "echo 'Initialed sovits data.'"]
     openweb-ui:
