@@ -4,10 +4,10 @@ services:
         image: alpine
         container_name: init-data
         volumes:
-            - ./gpt-sovits:/gpt-sovits-data
+            - ./gpt-sovits:/gpt-sovits
             - ./entrypoint.sh:/entrypoint.sh
         entrypoint: ["/bin/sh", "/entrypoint.sh"]
-        command: ["sh", "-c", "echo 'Initialed sovits data.'"]
+        command: tail -f /dev/null
     openweb-ui:
         image: ghcr.io/open-webui/open-webui:main
         container_name: openweb-ui
@@ -30,8 +30,7 @@ services:
         image: breakstring/gpt-sovits:latest
         container_name: gpt-sovits-cpu
         depends_on:
-            init-data:
-                condition: service_completed_successfully
+            - init-data
         environment:
             - is_half=False
             - is_share=False
