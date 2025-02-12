@@ -7,7 +7,7 @@
 [**English**](../../README.md) | **中文简体**
 
 ---
-想要了解更多，欢迎观看[视频](links_for_bilibili)介绍。
+想要了解更多，欢迎观看[视频](https://www.bilibili.com/video/BV1LeKjejES6)介绍。
 </div>
 
 ## 特点
