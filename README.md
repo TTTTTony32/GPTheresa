@@ -7,7 +7,7 @@
 **English** | [**中文简体**](./docs/cn/README.md)
 
 ---
-For more information, feel free to watch the [video](links_for_bilibili) introduction.
+For more information, feel free to watch the [video](https://www.bilibili.com/video/BV1LeKjejES6) introduction.
 </div>
 
 ## Features
