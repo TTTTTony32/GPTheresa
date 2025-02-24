@@ -64,6 +64,13 @@ PC配置方面，我们建议至少使用RTX30系，显存>8G的显卡，否则�
 本项目的示意图如下:
 
 ![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/cn/main_structure_cn.png)
+
+
+### 一键部署(一键包) 
+
+  点击[教程](https://www.yuque.com/deckdes/vl0k6z/mbssaorn5phock0l)访问教程和获取下载链接。
+  
+  一键包相关问题在教程链接的**常见问题**部分。
   
 ### 一键部署(Docker Compose) 
   由于本项目集成了`OpenWebUI`、`GPT-SoVITS`两个大型开源项目，手动部署步骤相当繁琐，且部署后需要启动数个终端，不利于长久使用，因此我们强烈建议用户使用Docker部署我们的项目。
