@@ -53,7 +53,6 @@ services:
         ports:
             - "8000:8000"
         depends_on:
-            - ollama-cpu
             - openweb-ui
             - gpt-sovits-cpu
         restart: unless-stopped
