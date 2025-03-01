@@ -12,7 +12,7 @@
 
 ## 特点
 - **角色扮演**：
-  - 本项目致力于使用开源模型和框架，通过Prompt Engeneering实现本地部署私人聊天助理，并让LLM扮演特定角色。
+  - 本项目致力于使用开源模型和框架，通过提示词工程和本地知识库调用实现本地部署私人聊天助理，并让LLM扮演特定角色。
 - **拓展接口**: 
   - 通过中间API将`GPT-SoVITS`TTS服务与`OpenWebUI`TTS接口兼容。
   - 通过`OpenWebUI`的`tools`功能，使得LLM能够获取[PRTS wiki](https://prts.wiki)内容，结合模型的`Function Calling`特性，实现自动检索内容，减少模型幻觉。
@@ -22,12 +22,13 @@
   - 支持本地[Ollama](https://github.com/ollama/ollama)模型部署。
   - 支持在线模型（需支持[OpenAI API](https://openai.com/api/)格式）。
 - **安装简易**:
+  - 对于小白，我们推出了一键包。
   - 支持Docker Compose一键部署。
   - 对于高级用户，提供手动部署步骤。
 
 ## 实装模型
 本项目内部提供部分已调优的模型，可开箱即用
-- **特蕾西娅**：基础模型`Qwen-2.5:7B`，包含系统提示词、GPT-SoVITS模型、PRTS接入能力。
+- **特蕾西娅**：基础模型`Qwen-2.5:7B`，包含系统提示词、本地知识库、GPT-SoVITS模型、PRTS接入能力。
 
 ## 性能要求
 下表展示了部分Ollama支持的开源模型在本项目下的效果。
@@ -45,7 +46,7 @@ Intel Xeon Platinum 8352V
 | Qwen2.5:0.5B                | ✅          | ❌    | 15%      |
 | Qwen2.5:1.5B                | ✅          | ⛔    | 20%      |
 | **Qwen2.5:7B**                  | ✅          | ⛔    | **45%**      |
-| **Qwen2.4:14B**                 | ✅          | ✅    | **70%**      |
+| **Qwen2.5:14B**                 | ✅          | ✅    | **70%**      |
 | GLM4:9B                     | ✅          | ✅    | 40%      |
 | DeepSeek-R1:1.5B            | ✅          | ❌    | 20%      |
 | DeepSeek-R1:7B              | ✅          | ❌    | 20%      |
@@ -66,12 +67,11 @@ PC配置方面，我们建议至少使用RTX30系，显存>8G的显卡，否则�
 ![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/cn/main_structure_cn.png)
 
 
-### 一键部署(一键包) 
+### 一键包
+  见[教程](https://www.yuque.com/deckdes/vl0k6z/mbssaorn5phock0l)
 
-  点击[教程](https://www.yuque.com/deckdes/vl0k6z/mbssaorn5phock0l)访问教程和获取下载链接。
-  
-  一键包相关问题在教程链接的**常见问题**部分。
-  
+
+
 ### 一键部署(Docker Compose) 
   由于本项目集成了`OpenWebUI`、`GPT-SoVITS`两个大型开源项目，手动部署步骤相当繁琐，且部署后需要启动数个终端，不利于长久使用，因此我们强烈建议用户使用Docker部署我们的项目。
   
@@ -237,6 +237,8 @@ PC配置方面，我们建议至少使用RTX30系，显存>8G的显卡，否则�
         > 模型ID为OpenWebUI向API提供商请求模型时的ID，请务必填写完整、正确。
 
     选择**工作空间**>>**工具**>>**导入工具**>>导入PRTS.json，上传并刷新网页。
+
+    选择**工作空间**>>**知识库**旁+号，创建两个知识库，第一个将src/knowledges-base/下的文件全部拖入到网页中，打开目录下的`泰拉大典`,将文件全部上传到第二个知识库中。上传完成后刷新检查。
    
     选择**工作空间**>>**模型**>>**导入模型**>>导入Theresa-AI-v3.json，上传并刷新网页。
    
@@ -254,10 +256,12 @@ PC配置方面，我们建议至少使用RTX30系，显存>8G的显卡，否则�
 
 ### **恭喜,您完成了安装,可以去聊天了!**
 
-## 未来计划
-- 支持更多角色。
-- 支持更多音色。
-- 简化部署。
+## TODO
+- 剧情知识库提取：模型会调用已有剧情进行自身修正并减少模型幻觉。
+- 多情感模型：模型会根据输出语句自行判断情感并以该情感的语音返回给用户。
+- 寻找最适温度：寻找模型在对话和调用剧情和提示词的最适温度，减小模型幻觉发生概率。
+- MiddleAPI优化:增加简易交互UI。
+- 多角色支持：增加更多角色，如霜星，克丽斯腾等。以及适配对应的语音。
 ## 致谢
 - [OpenWebUI](https://github.com/open-webui/open-webui)
 - [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)
@@ -277,4 +281,4 @@ PC配置方面，我们建议至少使用RTX30系，显存>8G的显卡，否则�
 我们感谢所有支持我们的人，如果您想给我们买杯咖啡，可以扫下方二维码：
 ![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/qr/qr-support.png)
 
-### 项目由 **[Tony32](https://github.com/TTTTTony32)** **[NekokeCore](https://github.com/NekokeCore)** **[DeckDes](https://github.com/DeckDes233)** 合力完成。
+### 项目由 **[Tony32](https://github.com/TTTTTony32)** **[NekokeCore](https://github.com/NekokeCore)** **[DeckDes](https://github.com/DeckDes233)** **[Ebenholzzz](https://github.com/Ebenholzzz)** 合力完成。
