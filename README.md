@@ -9,10 +9,14 @@
 ---
 想要了解更多，欢迎观看：
 
-- [视频（基本介绍）](https://www.bilibili.com/video/BV1LeKjejES6)
-- [视频（知识库集成介绍）](https://www.bilibili.com/video/BV1QvP3epEye)
-- [视频（**知识库部署**）](https://www.bilibili.com/video/BV1CpP7edE1P)
-- **注**：此视频介绍的为CherryStudio知识库部署。
+[视频（基本介绍）](https://www.bilibili.com/video/BV1LeKjejES6)
+
+[视频（知识库集成介绍）](https://www.bilibili.com/video/BV1QvP3epEye)
+
+[视频（**知识库部署**）](https://www.bilibili.com/video/BV1CpP7edE1P)
+
+**注**：此视频介绍的为CherryStudio知识库部署。
+
 </div>
 
 ## 特点
@@ -274,7 +278,7 @@ PC配置方面，我们建议至少使用RTX30系，显存>8G的显卡，否则�
  - 寻找最适温度：寻找模型在对话和调用剧情和提示词的最适温度，减小模型幻觉发生概率。
  - MiddleAPI优化:增加简易交互UI。
  - 多角色支持：增加更多角色，如霜星，克丽斯腾等。以及适配对应的语音。
- - AI移植到MC中与玩家交互
+ - AI移植到MC中与玩家交互。
 
 
 ## 致谢
