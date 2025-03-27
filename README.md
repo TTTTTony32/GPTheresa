@@ -72,12 +72,10 @@ PC配置方面，我们建议至少使用RTX30系，显存>8G的显卡，否则�
 ![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/cn/main_structure_cn.png)
 
 
--
-- 
--
+
 - ### 一键包
--   见[教程](https://www.yuque.com/deckdes/vl0k6z/mbssaorn5phock0l)
-- 
+    见[教程](https://www.yuque.com/deckdes/vl0k6z/mbssaorn5phock0l)
+
  
  
 
