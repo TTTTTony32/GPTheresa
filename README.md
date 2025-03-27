@@ -7,12 +7,17 @@
 [**English**](./docs/en/README.md) | **中文简体**
 
 ---
-想要了解更多，欢迎观看[视频](https://www.bilibili.com/video/BV1LeKjejES6)介绍。
+想要了解更多，欢迎观看：
+
+- [视频（基本介绍）](https://www.bilibili.com/video/BV1LeKjejES6)
+- [视频（知识库集成介绍）](https://www.bilibili.com/video/BV1QvP3epEye)
+- [视频（**知识库部署**）](https://www.bilibili.com/video/BV1CpP7edE1P)
+- **注**：此视频介绍的为CherryStudio知识库部署。
 </div>
 
 ## 特点
 - **角色扮演**：
-  - 本项目致力于使用开源模型和框架，通过Prompt Engeneering实现本地部署私人聊天助理，并让LLM扮演特定角色。
+  - 本项目致力于使用开源模型和框架，通过提示词工程和本地知识库调用实现本地部署私人聊天助理，并让LLM扮演特定角色。
 - **拓展接口**: 
   - 通过中间API将`GPT-SoVITS`TTS服务与`OpenWebUI`TTS接口兼容。
   - 通过`OpenWebUI`的`tools`功能，使得LLM能够获取[PRTS wiki](https://prts.wiki)内容，结合模型的`Function Calling`特性，实现自动检索内容，减少模型幻觉。
@@ -22,12 +27,13 @@
   - 支持本地[Ollama](https://github.com/ollama/ollama)模型部署。
   - 支持在线模型（需支持[OpenAI API](https://openai.com/api/)格式）。
 - **安装简易**:
+  - 对于小白，我们推出了一键包。
   - 支持Docker Compose一键部署。
   - 对于高级用户，提供手动部署步骤。
 
 ## 实装模型
 本项目内部提供部分已调优的模型，可开箱即用
-- **特蕾西娅**：基础模型`Qwen-2.5:7B`，包含系统提示词、GPT-SoVITS模型、PRTS接入能力。
+- **特蕾西娅**：基础模型`Qwen-2.5:7B`，包含系统提示词、本地知识库、GPT-SoVITS模型、PRTS接入能力。
 
 ## 性能要求
 下表展示了部分Ollama支持的开源模型在本项目下的效果。
@@ -45,7 +51,7 @@ Intel Xeon Platinum 8352V
 | Qwen2.5:0.5B                | ✅          | ❌    | 15%      |
 | Qwen2.5:1.5B                | ✅          | ⛔    | 20%      |
 | **Qwen2.5:7B**                  | ✅          | ⛔    | **45%**      |
-| **Qwen2.4:14B**                 | ✅          | ✅    | **70%**      |
+| **Qwen2.5:14B**                 | ✅          | ✅    | **70%**      |
 | GLM4:9B                     | ✅          | ✅    | 40%      |
 | DeepSeek-R1:1.5B            | ✅          | ❌    | 20%      |
 | DeepSeek-R1:7B              | ✅          | ❌    | 20%      |
@@ -64,6 +70,22 @@ PC配置方面，我们建议至少使用RTX30系，显存>8G的显卡，否则�
 本项目的示意图如下:
 
 ![](https://raw.githubusercontent.com/TTTTTony32/GPTheresa/main/pics/cn/main_structure_cn.png)
+
+
+-
+- 
+-
+- ### 一键包
+-   见[教程](https://www.yuque.com/deckdes/vl0k6z/mbssaorn5phock0l)
+- 
+ 
+ 
+
+
+
+
+
+
   
 ### 一键部署(Docker Compose) 
   由于本项目集成了`OpenWebUI`、`GPT-SoVITS`两个大型开源项目，手动部署步骤相当繁琐，且部署后需要启动数个终端，不利于长久使用，因此我们强烈建议用户使用Docker部署我们的项目。
@@ -248,10 +270,15 @@ PC配置方面，我们建议至少使用RTX30系，显存>8G的显卡，否则�
 
 ### **恭喜,您完成了安装,可以去聊天了!**
 
-## 未来计划
-- 支持更多角色。
-- 支持更多音色。
-- 简化部署。
+## TODO
+ - 剧情知识库提取：模型会调用已有剧情进行自身修正并减少模型幻觉。
+ - 多情感模型：模型会根据输出语句自行判断情感并以该情感的语音返回给用户。
+ - 寻找最适温度：寻找模型在对话和调用剧情和提示词的最适温度，减小模型幻觉发生概率。
+ - MiddleAPI优化:增加简易交互UI。
+ - 多角色支持：增加更多角色，如霜星，克丽斯腾等。以及适配对应的语音。
+ - AI移植到MC中与玩家交互
+
+
 ## 致谢
 - [OpenWebUI](https://github.com/open-webui/open-webui)
 - [GPT-SoVITS](https://github.com/RVC-Boss/GPT-SoVITS)
